@@ -1,0 +1,43 @@
+{
+  "name": "on_expressjs_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development nodemon src/server.js",
+    "start": "cross-env NODE_ENV=production node src/server.js",
+    "dev:tailwind": "npx tailwindcss -i ./frontend/tailwind-vendor.css -o ./frontend/tailwind.output.dev.css --watch",
+    "build:tailwind": "npx tailwindcss -i ./frontend/tailwind-vendor.css -o ./src/public/vendor/tailwind.bundle.css --minify",
+    "build:gridjs": "node build.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "esbuild": "^0.27.2",
+    "nodemon": "^3.1.10",
+    "sequelize": "^6.37.7",
+    "sequelize-cli": "^6.6.3",
+    "tailwindcss": "^3.4.19"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "@supabase/supabase-js": "^2.90.1",
+    "bcrypt": "^6.0.0",
+    "chart.js": "^4.4.1",
+    "connect-redis": "^9.0.0",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "express-session": "^1.18.2",
+    "express-validator": "^7.2.1",
+    "gridjs": "^6.2.0",
+    "multer": "^2.0.2",
+    "mysql2": "^3.15.2",
+    "redis": "^5.9.0",
+    "resend": "^6.7.0"
+  }
+}

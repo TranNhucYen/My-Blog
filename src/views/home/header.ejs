@@ -1,0 +1,27 @@
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white shadow-md">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="flex justify-between items-center py-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-blog text-white text-xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-blue-600">My Blog</h1>
+            </div>
+            <nav class="flex gap-6 items-center">
+                <a href="/" class="transition-colors font-medium flex items-center gap-2
+                    <%= typeof page !== 'undefined' && page === 'home' ? 'text-blue-600' : '' %>">
+                    <i class="fas fa-home"></i>
+                    <span class="hidden sm:inline">Trang chủ</span>
+                </a>
+
+                <a href="/contact" class="transition-colors font-medium flex items-center gap-2
+                    <%= typeof page !== 'undefined' && page === 'contact' ? 'text-blue-600' : '' %>">
+                    <i class="fas fa-envelope"></i>
+                    <span class="hidden sm:inline">Liên hệ</span>
+                </a>
+            </nav>
+
+        </div>
+    </div>
+</header>

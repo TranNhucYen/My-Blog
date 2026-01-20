@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <title><%= post.title %> - My Blog</title>
+</head>
+
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <%- include('header') %>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-6">
+        <!-- Breadcrumb -->
+        <nav class="mb-8 flex items-center gap-2 text-sm text-gray-600">
+            <a href="/" class="hover:text-blue-600 transition-colors">Trang chủ</a>
+            <span>/</span>
+            <span class="text-gray-800 font-medium">Chi tiết bài viết</span>
+        </nav>
+
+        <!-- Post Detail -->
+        <article class="bg-white shadow-xl overflow-hidden">
+            <!-- Featured Image -->
+            <div class="relative w-full overflow-hidden">
+                <% if (post.thumbnailPath) { %>
+                    <img class="object-cover w-full h-64 md:h-80" 
+                        src="<%= post.thumbnailPath %>" 
+                        alt="<%= post.title %>"
+                    >
+                <% } %>
+            </div>
+
+            <!-- Post Title -->
+            <div class="px-8 md:px-12 py-4">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 break-words">
+                    <%= post.title %>
+                </h1>
+            </div>
+
+            <!-- Post Meta -->
+            <div class="px-8 md:px-12 py-2 border-t border-b border-gray-200 bg-gray-50">
+                <div class="flex flex-wrap items-center gap-8 text-sm text-gray-600">
+                    <div>
+                        <span class="font-medium text-gray-800">Tác giả:</span> <%= post.User.username %>
+                    </div>
+                    <div>
+                        <span class="font-medium text-gray-800">Ngày đăng:</span> <%= new Date(post.createdAt).toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+                    </div>
+                
+                </div>
+
+            <!-- Post Content -->
+            <div class="px-1 pb-8 text-justify">
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-gray-700 leading-relaxed whitespace-pre-line text-lg break-words overflow-wrap-anywhere">
+                        <%= post.content %>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Post Footer -->
+        
+        </article>
+
+        <!-- Back Button -->
+        <div class="mt-8">
+            <a href="/" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-all font-semibold shadow-md">
+                <i class="fas fa-arrow-left"></i>
+                <span>Quay lại trang chủ</span>
+            </a>
+        </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+
+</body>
+
+</html>

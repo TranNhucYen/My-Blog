@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Liên hệ - My Blog</title>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <%- include('header') %>
+    
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12">
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+            <!-- Contact Information -->
+            <div class="bg-white rounded-xl shadow-lg p-8 h-full flex flex-col">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Thông tin liên hệ</h3>
+                
+                <!-- Contact Cards -->
+                <div class="space-y-4 flex-grow">
+                    <!-- Email -->
+                    <div class="p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-300">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 text-sm">Email</h4>
+                                <a href="mailto:contact@myblog.com" class="text-blue-600 hover:text-blue-700 transition-colors text-sm">
+                                    trannhucyendev@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors duration-300">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 text-sm">Điện thoại</h4>
+                                <a class="text-blue-600 hover:text-blue-700 transition-colors text-sm">
+                                    +84 123 456 789
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors duration-300">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 text-sm">Địa chỉ</h4>
+                                <p class="text-gray-600 text-sm">
+                                    Ninh Kiều, Cần Thơ, Việt Nam
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="p-4 bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors duration-300">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-pink-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-share-alt text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
+                                        <i class="fab fa-facebook-f text-xs"></i>
+                                    </a>
+                                    <a href="#" class="w-8 h-8 bg-sky-500 rounded-full flex items-center justify-center text-white hover:bg-sky-600 transition-colors">
+                                        <i class="fab fa-twitter text-xs"></i>
+                                    </a>
+                                    <a href="#" class="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition-colors">
+                                        <i class="fab fa-instagram text-xs"></i>
+                                    </a>
+                                    <a href="#" class="w-8 h-8 bg-blue-700 rounded-full flex items-center justify-center text-white hover:bg-blue-800 transition-colors">
+                                        <i class="fab fa-linkedin-in text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="bg-white rounded-xl shadow-lg p-8 h-full flex flex-col">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Gửi email</h3>
+                
+                <form class="space-y-4 flex-grow flex flex-col">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+                            Họ và tên <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="name" name="name" required
+                            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+                            placeholder="Nhập họ và tên của bạn">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                            Email <span class="text-red-500">*</span>
+                        </label>
+                        <input type="email" id="email" name="email" required
+                            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+                            placeholder="example@email.com">
+                    </div>
+
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">
+                            Chủ đề <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="subject" name="subject" required
+                            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+                            placeholder="Chủ đề tin nhắn">
+                    </div>
+
+                    <div class="flex-grow flex flex-col">
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
+                            Nội dung <span class="text-red-500">*</span>
+                        </label>
+                        <textarea id="message" name="message" required
+                            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none flex-grow text-sm"
+                            placeholder="Nhập nội dung tin nhắn của bạn..."
+                            rows="4"></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white py-2.5 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2 mt-auto">
+                        <i class="fas fa-paper-plane"></i>
+                        Gửi tin nhắn
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        
+    </main>
+
+    <%- include('../partials/footer') %>
+
+    <script>
+        // Form submission handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            // Show success message
+            alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.');
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

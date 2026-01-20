@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  blogmvc-mysql:
+    image: mysql:8.0
+    container_name: blogmvc-mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: demo_user
+      MYSQL_PASSWORD: demo_pass
+      MYSQL_DATABASE: myblog
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./myblog.sql:/docker-entrypoint-initdb.d/myblog.sql
+    restart: always
+
+  blogmvc-redis:
+    image: redis:latest
+    container_name: blogmvc-redis-container
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    restart: always
+
+volumes:
+  mysql_data:
+  redis_data:

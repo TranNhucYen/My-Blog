@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <%- include('../partials/head') %>
+        <title>Đăng Nhập Quản Trị</title>
+</head>
+
+<body>
+    <div class=" from-blue-50 to-blue-100 min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-md">
+            <!-- Login Card -->
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <!-- Header -->
+                <div class="bg-blue-600 px-8 py-10 text-center">
+                    <div class="mb-4">
+                        <i class="fas fa-lock text-white text-7xl"></i>
+                    </div>
+                    <h1 class="text-3xl font-bold text-white mb-2">Cổng Quản Trị</h1>
+                    <p class="text-blue-100">Đăng nhập vào tài khoản của bạn</p>
+                </div>
+
+                <!-- Form -->
+                <form id="login-form" action="/auth/login-admin" method="POST" class="px-8 py-10">
+                    <!-- Email Field -->
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-700 text-sm font-semibold mb-2">
+                            Địa chỉ Email
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope text-gray-400"></i>
+                            </div>
+                            <input type="email" id="email" name="email" value="a@gmail.com" required
+                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-200"
+                                placeholder="Nhập email của bạn">
+                        </div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-700 text-sm font-semibold mb-2">
+                            Mật khẩu
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-gray-400"></i>
+                            </div>
+                            <input type="password" id="password" name="password" value="123" required
+                                class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-200"
+                                placeholder="Nhập mật khẩu của bạn">
+
+                            <!-- Toggle button -->
+                            <button type="button" onclick="togglePassword()"
+                                class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <i id="toggle-icon" class="fas fa-eye text-gray-400 hover:text-gray-600"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+
+                    <!-- Submit Button -->
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
+                        Đăng Nhập
+                    </button>
+                    <div class="flex justify-end mb-6">
+                        <a href="#" class="text-sm text-blue-600 pt-2 hover:text-blue-700 font-medium">
+                            Quên mật khẩu?
+                        </a>
+                    </div>
+                </form>
+
+                <!-- Footer -->
+                <div class="px-8 py-4 bg-gray-50 border-t border-gray-200 text-center">
+                    <p class="text-sm text-gray-600">
+                        Chưa có tài khoản?
+                        <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">Liên hệ quản trị viên</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/footer') %>
+
+        <script src="/js/utils/toast.js"></script>
+        <script src="/js/utils/fetchAPI.js"></script>
+        <script>
+            function togglePassword() {
+                const passwordInput = document.getElementById('password');
+                const toggleIcon = document.getElementById('toggle-icon');
+
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    toggleIcon.classList.remove('fa-eye');
+                    toggleIcon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    toggleIcon.classList.remove('fa-eye-slash');
+                    toggleIcon.classList.add('fa-eye');
+                }
+            }
+
+            document.getElementById('login-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const result = await fetchAPI.post('/auth/login-admin', data);
+                    if (result.success) {
+                        window.location.href = result.redirect || '/admin/dashboard';
+                    }
+                } catch (error) {
+                    if (error.status === 401) {
+                        Toast.error("sai thông tin đăng nhập");
+                    } else {
+                        Toast.error(error.message || "Đã có lỗi xảy ra");
+                    }
+                }
+            });
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <title>Home - My Blog</title>
+</head>
+
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <%- include('header') %>
+    <!-- Hero Section -->
+    <section class="bg-blue-600 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Chào mừng đến với Blog của tôi</h2>
+            <p id="typewriter" class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto min-h-[2rem]"></p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl py-6">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center gap-3">
+                    Bài viết mới nhất
+                </h1>
+                <p class="text-gray-600 mt-2">Cập nhật những bài viết mới nhất từ cộng đồng</p>
+            </div>
+            <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-semibold">
+                <%= posts.length %> bài viết
+            </span>
+        </div>
+
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-8 auto-rows-fr">
+            <% posts.forEach(post=> { %>
+                <a href="/posts/<%= post.id %>" class="flex">
+                    <article
+                        class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer hover:-translate-y-2 flex flex-col w-full">
+                        <div class="relative w-full h-32 overflow-hidden flex-shrink-0">
+                            <img class="object-cover w-full h-full"
+                                src="<%= post.thumbnailPath %>"
+                                alt="<%= post.title %>"
+                            >
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h2
+                                class="font-bold text-xl text-gray-800 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                                <%= post.title %>
+                            </h2>
+                            <p
+                                class="text-gray-600 line-clamp-2 mb-4 leading-relaxed overflow-hidden text-ellipsis">
+                                <%= post.content %>
+                            </p>
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-user text-white text-xs"></i>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-700 truncate max-w-[120px]">
+                                        <%= post.User?.username || ''%>
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-1 text-gray-500 text-sm flex-shrink-0">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>
+                                        <%= new Date(post.createdAt).toLocaleDateString('vi-VN') %>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+            <% }) %>
+        </div>
+
+        <!-- Empty State -->
+        <% if (posts.length===0) { %>
+            <div class="text-center py-16">
+                <div class="inline-block p-6 bg-gray-100 rounded-full mb-4">
+                    <i class="fas fa-inbox text-gray-400 text-6xl"></i>
+                </div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Chưa có bài viết nào</h3>
+                <p class="text-gray-600">Hãy quay lại sau để khám phá những bài viết mới!</p>
+            </div>
+            <% } %>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+    <script>
+        const text = 'Khám phá những bài viết thú vị và chia sẻ kiến thức hữu ích';
+        const el = document.getElementById('typewriter');
+        const typingSpeed = 50;
+        const delayBetweenLoops = 3000;
+
+        let index = 0;
+
+        function startTyping() {
+            el.textContent = '';
+            index = 0;
+
+            const interval = setInterval(() => {
+                el.textContent += text[index];
+                index++;
+
+                if (index === text.length) {
+                    clearInterval(interval);
+                    setTimeout(startTyping, delayBetweenLoops);
+                }
+            }, typingSpeed);
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(startTyping, 500);
+        });
+    </script>
+
+
+</body> 
+
+</html>
