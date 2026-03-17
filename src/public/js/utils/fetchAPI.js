@@ -14,7 +14,15 @@ const fetchAPI = {
         }
 
         const text = await response.text();
-        const data = text ? JSON.parse(text) : null;
+        let data = null;
+
+        try {
+            data = text ? JSON.parse(text) : null;
+        } catch (parseError) {
+            const error = new Error('Lỗi không xác định');
+            error.status = response.status || 500;
+            throw error;
+        }
 
         if (!response.ok) {
             const error = new Error(data?.message || 'Request failed');
