@@ -9,10 +9,11 @@
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
     <%- include('header') %>
     <!-- Hero Section -->
-    <section class="bg-blue-600 text-white py-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">Chào mừng đến với Blog của tôi</h2>
-            <p id="typewriter" class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto min-h-[2rem]"></p>
+    <section class="relative text-white py-16 md:py-24 bg-cover bg-center" style="background-image: url('/imgs/banner.png');">
+        <div class="absolute inset-0 bg-black/30"></div>
+        <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">Chào mừng đến với Blog của tôi</h2>
+            <p id="typewriter" class="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto min-h-[2rem] drop-shadow-md"></p>
         </div>
     </section>
 
