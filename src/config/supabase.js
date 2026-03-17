@@ -3,7 +3,10 @@ require('dotenv').config();
 
 const isProd = process.env.NODE_ENV === 'production';
 
-const supabaseUrl = (isProd ? process.env.PROD_SUPABASE_URL : null) || process.env.SUPABASE_URL;
+let supabaseUrl = (isProd ? process.env.PROD_SUPABASE_URL : null) || process.env.SUPABASE_URL;
+if (supabaseUrl && !supabaseUrl.startsWith('http://') && !supabaseUrl.startsWith('https://')) {
+    supabaseUrl = `https://${supabaseUrl}`;
+}
 const supabaseKey = (isProd ? process.env.PROD_SUPABASE_SECRET_KEY : null) || process.env.SUPABASE_SECRET_KEY;
 const bucketName = (isProd ? process.env.PROD_SUPABASE_BUCKET_NAME : null) || process.env.SUPABASE_BUCKET_NAME;
 
