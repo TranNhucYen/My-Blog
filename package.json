@@ -9,7 +9,7 @@
     "start": "cross-env NODE_ENV=production node src/server.js",
     "dev:tailwind": "npx tailwindcss -i ./frontend/tailwind-vendor.css -o ./frontend/tailwind.output.dev.css --watch",
     "build:tailwind": "npx tailwindcss -i ./frontend/tailwind-vendor.css -o ./src/public/vendor/tailwind.bundle.css --minify",
-    "build:gridjs": "node build.js"
+    "build:gridjs": "node esbuild.js"
   },
   "keywords": [],
   "author": "",
