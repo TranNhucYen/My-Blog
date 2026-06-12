@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const configViewEngine = require('./config/viewEngine.js');
-const configStaticFile = require('./config/staticFile.js');
+const configStaticfile = require('./config/staticfile.js');
 const webRouter = require('./routes/web.js');
 const configSession = require('./config/session.js');
 const { errorHandler, errorConverter } = require('./middleware/error.js');
@@ -20,7 +20,7 @@ app.locals.PUBLIC_ENV = {
 }
 
 configViewEngine(app);
-configStaticFile(app);
+configStaticfile(app);
 
 app.use('/', webRouter);
 
