@@ -1,5 +1,5 @@
 const ApiError = require('../utils/apiError');
-const { Sequelize } = require('sequelize');
+const { Sequelize, Op } = require('sequelize');
 const { User, Post } = require('../models');
 
 const verifyUserCredentials = async (email, password) => {
@@ -16,11 +16,11 @@ const verifyUserCredentials = async (email, password) => {
 const readAllUsers = async () => {
     const users = await User.findAll({
         attributes: ['id', 'username', 'email', 'role'],
+        where: { role: { [Op.ne]: 'superadmin' } },
         order: [['createdAt', 'DESC']],
         raw: true,
-
-        
     });
+    console.log(users);
     return users;
 }
 
@@ -48,6 +48,7 @@ const updateUser = async (userId, newData) => {
 const deleteUser = async (userId) => {
     const user = await User.findByPk(userId);
     if (!user) throw new ApiError(404, 'User not found');
+    if (user.role === 'superadmin') throw new ApiError(403, 'Cannot delete superadmin account');
     await user.destroy();
     return user;
 }
