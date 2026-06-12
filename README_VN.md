@@ -91,12 +91,7 @@ pnpm db:seed:prod
 Dự án cần biên dịch Tailwind CSS và đóng gói các thư viện JS/Fonts:
 
 ```bash
-# Build JS & Font bundles
-node esbuild.js
-node esbuild-font.js
-
-# Build Tailwind CSS
-pnpm build:tailwind
+pnpm build
 ```
 
 ---
@@ -143,6 +138,7 @@ BlogMVC/
 - `pnpm build`: Build toàn bộ tài nguyên (Tailwind CSS + esbuild) cho production.
 - `pnpm build:tailwind`: Biên dịch Tailwind CSS cho production.
 - `pnpm build:esbuild`: Đóng gói thư viện vendor JS (esbuild).
+- `pnpm build:font`: Đóng gói vendor fonts (esbuild).
 - `pnpm db:migrate`: Chạy migration database (development).
 - `pnpm db:migrate:prod`: Chạy migration database (production).
 - `pnpm db:seed`: Tạo dữ liệu mẫu (development).
