@@ -40,7 +40,7 @@ A Blog Management System built with **Node.js**, **Express**, and **MySQL**, fol
 Ensure you have the following installed:
 - **Node.js** (v18.x or higher)
 - **MySQL** (v8.0+)
-- **Redis** (Optional, for persistent session management)
+- **Redis** (Optional — auto-fallback to MemoryStore if unavailable)
 - **Docker Desktop** (Optional, for easy environment setup)
 
 ### 1. Installation
@@ -77,8 +77,13 @@ docker compose up -d
 Sync your database schema and populate it with initial data:
 
 ```bash
-npx sequelize-cli db:migrate
-npx sequelize-cli db:seed:all
+# Development
+pnpm db:migrate
+pnpm db:seed
+
+# Production
+pnpm db:migrate:prod
+pnpm db:seed:prod
 ```
 
 ### 5. Build Assets
@@ -91,7 +96,7 @@ node esbuild.js
 node esbuild-font.js
 
 # Build Tailwind CSS
-pnpm run build:tailwind
+pnpm build:tailwind
 ```
 
 ---
@@ -124,6 +129,25 @@ BlogMVC/
 │   ├── models/      # Sequelize database models
 │   ├── routes/      # Application routing
 │   ├── services/    # Database communication and external service integrations (Supabase, Resend)
+│   ├── utils/       # Utility functions (database health check, crypto, etc.)
 │   ├── views/       # EJS templates
 │   └── public/      # Static assets (compiled bundles)
 ```
+
+---
+
+## Available Scripts
+
+- `pnpm dev`: Start dev server (Nodemon) + Tailwind CSS watch mode concurrently.
+- `pnpm start`: Start production server.
+- `pnpm build`: Build all assets (Tailwind CSS + esbuild) for production.
+- `pnpm build:tailwind`: Compile Tailwind CSS for production.
+- `pnpm build:esbuild`: Bundle vendor JS libraries (esbuild).
+- `pnpm db:migrate`: Run database migrations (development).
+- `pnpm db:migrate:prod`: Run database migrations (production).
+- `pnpm db:seed`: Seed database with initial data (development).
+- `pnpm db:seed:prod`: Seed database with initial data (production).
+
+---
+
+# My Project
