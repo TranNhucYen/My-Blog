@@ -20,6 +20,7 @@ let isRedisConnected = false;
 // Kết nối Redis
 redisClient.connect().catch(() => {
     console.log('>>> Error connecting to Redis, session will use MemoryStore');
+    redisClient.quit();
 });
 
 // Xử lý lỗi Redis
