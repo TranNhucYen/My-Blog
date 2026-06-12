@@ -150,6 +150,4 @@ BlogMVC/
 
 ---
 
-## License
-
-This project is licensed under the **ISC License**.
+# My Project

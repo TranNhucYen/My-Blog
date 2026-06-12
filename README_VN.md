@@ -150,6 +150,4 @@ BlogMVC/
 
 ---
 
-## Giấy phép
-
-Dự án này được cấp phép theo **ISC License**.
+# My Project
