@@ -6,8 +6,9 @@ module.exports = {
         username: process.env.DB_USER || 'demo_user',
         // if empty string or undefined, fallback to null so some ORMs treat it as no password
         password: process.env.DB_PASSWORD || 'demo_pass',
-        database: process.env.DB_NAME || 'myblog',
+        database: process.env.DB_NAME || 'blog_mvc',
         host: process.env.DB_HOST || '127.0.0.1',
+        port: process.env.DB_PORT || 3306,
         dialect: process.env.DB_DIALECT || 'mysql',
         logging: false
     },
@@ -17,6 +18,7 @@ module.exports = {
         password: process.env.TEST_DB_PASSWORD || process.env.DB_PASSWORD || null,
         database: process.env.TEST_DB_NAME || process.env.DB_NAME || 'database_test',
         host: process.env.TEST_DB_HOST || process.env.DB_HOST || '127.0.0.1',
+        port: process.env.TEST_DB_PORT || process.env.DB_PORT || 3306,
         dialect: process.env.TEST_DB_DIALECT || process.env.DB_DIALECT || 'mysql'
     },
 
@@ -25,6 +27,12 @@ module.exports = {
         password: process.env.PROD_DB_PASSWORD || process.env.DB_PASSWORD || null,
         database: process.env.PROD_DB_NAME || process.env.DB_NAME || 'database_production',
         host: process.env.PROD_DB_HOST || process.env.DB_HOST || '127.0.0.1',
-        dialect: process.env.PROD_DB_DIALECT || process.env.DB_DIALECT || 'mysql'
+        port: process.env.PROD_DB_PORT || process.env.DB_PORT || 3306,
+        dialect: process.env.PROD_DB_DIALECT || process.env.DB_DIALECT || 'mysql',
+        dialectOptions: {
+            ssl: {
+                rejectUnauthorized: true
+            }
+        }
     }
 };
