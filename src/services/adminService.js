@@ -20,7 +20,6 @@ const readAllUsers = async () => {
         order: [['createdAt', 'DESC']],
         raw: true,
     });
-    console.log(users);
     return users;
 }
 
