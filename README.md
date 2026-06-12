@@ -91,12 +91,7 @@ pnpm db:seed:prod
 The project compiles Tailwind CSS and bundles vendor JS/Fonts:
 
 ```bash
-# Build JS & Font bundles
-node esbuild.js
-node esbuild-font.js
-
-# Build Tailwind CSS
-pnpm build:tailwind
+pnpm build
 ```
 
 ---
@@ -143,6 +138,7 @@ BlogMVC/
 - `pnpm build`: Build all assets (Tailwind CSS + esbuild) for production.
 - `pnpm build:tailwind`: Compile Tailwind CSS for production.
 - `pnpm build:esbuild`: Bundle vendor JS libraries (esbuild).
+- `pnpm build:font`: Bundle vendor fonts (esbuild).
 - `pnpm db:migrate`: Run database migrations (development).
 - `pnpm db:migrate:prod`: Run database migrations (production).
 - `pnpm db:seed`: Seed database with initial data (development).
