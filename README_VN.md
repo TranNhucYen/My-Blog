@@ -40,7 +40,7 @@ Hệ thống quản lý Blog được xây dựng trên nền tảng **Node.js**
 Đảm bảo bạn đã cài đặt:
 - **Node.js** (v18.x trở lên)
 - **MySQL** (v8.0+)
-- **Redis** (Tùy chọn, để quản lý session tối ưu)
+- **Redis** (Tùy chọn — tự động chuyển sang MemoryStore nếu Redis không khả dụng)
 - **Docker Desktop** (Tùy chọn, để thiết lập môi trường nhanh chóng)
 
 ### 1. Cài đặt
@@ -77,8 +77,13 @@ docker compose up -d
 Đồng bộ schema và tạo dữ liệu mẫu:
 
 ```bash
-npx sequelize-cli db:migrate
-npx sequelize-cli db:seed:all
+# Development
+pnpm db:migrate
+pnpm db:seed
+
+# Production
+pnpm db:migrate:prod
+pnpm db:seed:prod
 ```
 
 ### 5. Biên dịch Tài nguyên (Build Assets)
@@ -91,7 +96,7 @@ node esbuild.js
 node esbuild-font.js
 
 # Build Tailwind CSS
-pnpm run build:tailwind
+pnpm build:tailwind
 ```
 
 ---
@@ -124,6 +129,27 @@ BlogMVC/
 │   ├── models/      # Sequelize database models
 │   ├── routes/      # Định nghĩa các tuyến đường (routes)
 │   ├── services/    # Giao tiếp với cơ sở dữ liệu và dịch vụ bên ngoài (Supabase, Resend)
+│   ├── utils/       # Hàm tiện ích (kiểm tra kết nối DB, crypto, v.v.)
 │   ├── views/       # Giao diện EJS templates
 │   └── public/      # Tài nguyên đã biên dịch
 ```
+
+---
+
+## Các Scripts có sẵn
+
+- `pnpm dev`: Chạy dev server (Nodemon) + Tailwind CSS watch mode đồng thời.
+- `pnpm start`: Chạy server production.
+- `pnpm build`: Build toàn bộ tài nguyên (Tailwind CSS + esbuild) cho production.
+- `pnpm build:tailwind`: Biên dịch Tailwind CSS cho production.
+- `pnpm build:esbuild`: Đóng gói thư viện vendor JS (esbuild).
+- `pnpm db:migrate`: Chạy migration database (development).
+- `pnpm db:migrate:prod`: Chạy migration database (production).
+- `pnpm db:seed`: Tạo dữ liệu mẫu (development).
+- `pnpm db:seed:prod`: Tạo dữ liệu mẫu (production).
+
+---
+
+## Giấy phép
+
+Dự án này được cấp phép theo **ISC License**.
