@@ -9,7 +9,7 @@ process.on('unhandledRejection', (reason) => {
 
 const isProd = process.env.NODE_ENV === 'production';
 const PORT = (isProd ? process.env.PROD_PORT : null) || process.env.PORT || 3000;
-const HOST = process.env.HOST || 'localhost';
+const HOST = isProd ? (process.env.PROD_HOST || undefined) : (process.env.HOST || 'localhost');
 
 checkConnection();
 
