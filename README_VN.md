@@ -47,7 +47,7 @@ Hệ thống quản lý Blog được xây dựng trên nền tảng **Node.js**
 
 ```bash
 git clone https://github.com/TranNhucYen/My-Blog.git
-npm install
+pnpm install
 ```
 
 ### 2. Cấu hình Môi trường
@@ -64,7 +64,8 @@ Cập nhật các thông số trong `.env` như: Database, Redis, Supabase keys,
 
 **Lựa chọn A: Sử dụng Docker (Nhanh nhất)**
 ```bash
-docker-compose -f db/docker-compose.yml up -d
+cd blog-mvc
+docker compose up -d
 ```
 
 **Lựa chọn B: Thiết lập Thủ công**
@@ -90,7 +91,7 @@ node esbuild.js
 node esbuild-font.js
 
 # Build Tailwind CSS
-npm run build:tailwind
+pnpm run build:tailwind
 ```
 
 ---
@@ -99,13 +100,13 @@ npm run build:tailwind
 
 ### Chế độ Phát triển (Development)
 ```bash
-npm run dev
+pnpm dev
 ```
 Ứng dụng sẽ hoạt động tại địa chỉ `http://localhost:3000`.
 
 ### Chế độ Production
 ```bash
-npm start
+pnpm start
 ```
 
 ---
@@ -126,21 +127,3 @@ BlogMVC/
 │   ├── views/       # Giao diện EJS templates
 │   └── public/      # Tài nguyên đã biên dịch
 ```
-
----
-
-## Các Scripts có sẵn
-
-- `npm run dev`: Chạy server phát triển với Nodemon.
-- `npm start`: Chạy server production.
-- `npm run build:tailwind`: Biên dịch Tailwind CSS.
-- `node esbuild.js`: Đóng gói các thư viện vendor.
-- `node esbuild-font.js`: Đóng gói icon FontAwesome.
-
----
-
-## Giấy phép
-
-Dự án này được cấp phép theo **ISC License**.
-
----
