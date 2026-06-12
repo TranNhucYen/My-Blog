@@ -9,7 +9,11 @@
     "start": "cross-env NODE_ENV=production node src/server.js",
     "dev:tailwind": "npx tailwindcss -i ./frontend/tailwind-vendor.css -o ./frontend/tailwind.output.dev.css --watch",
     "build:tailwind": "npx tailwindcss -i ./frontend/tailwind-vendor.css -o ./src/public/vendor/tailwind.bundle.css --minify",
-    "build:gridjs": "node esbuild.js"
+    "build:gridjs": "node esbuild.js",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:migrate:prod": "cross-env NODE_ENV=production npx sequelize-cli db:migrate",
+    "db:seed": "npx sequelize-cli db:seed:all",
+    "db:seed:prod": "cross-env NODE_ENV=production npx sequelize-cli db:seed:all"
   },
   "keywords": [],
   "author": "",
