@@ -14,6 +14,9 @@ const upload = require('../middleware/upload.js');
 router.use(requireLogin);
 router.use(authorize(['superadmin', 'admin']));
 
+// redirect /admin to /admin/dashboard
+router.get('/', (req, res) => res.redirect('/admin/dashboard'));
+
 // dashboard
 router.get('/dashboard', adminController.getDashboard);
 router.get('/statistics', adminController.getStatistics);

@@ -47,7 +47,7 @@ Ensure you have the following installed:
 
 ```bash
 git clone https://github.com/TranNhucYen/My-Blog.git
-npm install
+pnpm install
 ```
 
 ### 2. Environment Configuration
@@ -64,7 +64,8 @@ Update the variables in `.env` with your database credentials, Redis configurati
 
 **Option A: Using Docker (Fastest)**
 ```bash
-docker-compose -f db/docker-compose.yml up -d
+cd blog-mvc
+docker compose up -d
 ```
 
 **Option B: Manual Setup**
@@ -90,7 +91,7 @@ node esbuild.js
 node esbuild-font.js
 
 # Build Tailwind CSS
-npm run build:tailwind
+pnpm run build:tailwind
 ```
 
 ---
@@ -99,13 +100,13 @@ npm run build:tailwind
 
 ### Development Mode
 ```bash
-npm run dev
+pnpm dev
 ```
 The application will be live at `http://localhost:3000`.
 
 ### Production Mode
 ```bash
-npm start
+pnpm start
 ```
 
 ---
@@ -126,21 +127,3 @@ BlogMVC/
 │   ├── views/       # EJS templates
 │   └── public/      # Static assets (compiled bundles)
 ```
-
----
-
-## Available Scripts
-
-- `npm run dev`: Start development server with Nodemon.
-- `npm start`: Start production server.
-- `npm run build:tailwind`: Compile Tailwind CSS.
-- `node esbuild.js`: Bundle vendor libraries.
-- `node esbuild-font.js`: Bundle FontAwesome icons.
-
----
-
-## License
-
-This project is licensed under the **ISC License**.
-
----
